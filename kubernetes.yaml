@@ -16,7 +16,7 @@ spec:
         app: echo-udp
     spec:
       containers:
-      - image: ghcr.io/einfachnuralex/echo-udp:main
+      - image: ghcr.io/einfachnuralex/echo-udp:latest
         name: echo-udp
         env:
         - name: PORT
