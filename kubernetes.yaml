@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: echo-udp
+  name: echo-udp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo-udp
+  template:
+    metadata:
+      labels:
+        app: echo-udp
+    spec:
+      containers:
+      - image: ghcr.io/einfachnuralex/echo-udp:main
+        name: echo-udp
+        env:
+        - name: PORT
+          value: "31721"
+        ports:
+        - name: udp
+          containerPort: 31721
+          protocol: UDP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: echo-udp
+  name: echo-udp
+spec:
+  ports:
+  - port: 31721
+    protocol: UDP
+    targetPort: 31721
+  selector:
+    app: echo-udp
+  type: LoadBalancer
