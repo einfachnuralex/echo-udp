@@ -28,8 +28,8 @@ signal.signal(signal.SIGTERM, sigterm_handler)
 
 try:
     while True:
-      payload, client_address = sock.recvfrom(1)
-      print("Echoing data back to " + str(client_address))
+      payload, client_address = sock.recvfrom(100)
+      print("Echoing data back to " + str(client_address), payload)
       sent = sock.sendto(payload, client_address)
 finally:
     print("Goodbye")
